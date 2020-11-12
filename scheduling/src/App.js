@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Grid, Typography, FormControl, MenuItem, InputLabel, Select, TextField, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
+import { RMS, EDF, LLF } from './Algorithms';
 
 require('typeface-roboto');
 
@@ -21,6 +22,13 @@ const useStyles = makeStyles(theme => ({
 
 function App() {
   const classes = useStyles();
+
+  const [algosRan, setAlgosRan] = useState(false);
+
+  const [RMSfailed, setRMSfailed] = useState(false);
+  const [EDFfailed, setEDFfailed] = useState(false);
+  const [LLFfailed, setLLFfailed] = useState(false);
+
   const [numProcesses, setNumProcesses] = useState(1);
   const [time, setTime] = useState('');
 
@@ -117,6 +125,26 @@ function App() {
         break;
     }
     console.log(taskSet);
+    console.log("Begin schedules");
+    if (RMS(taskSet, time) === "failed") {
+      setRMSfailed(true);
+    }
+    else {
+      setRMSfailed(false);
+    }
+    if (EDF(taskSet, time) === "failed") {
+      setEDFfailed(true);
+    }
+    else {
+      setEDFfailed(false);
+    }
+    if (LLF(taskSet, time) === "failed") {
+      setLLFfailed(true);
+    }
+    else {
+      setLLFfailed(false);
+    }
+    setAlgosRan(true);
   }
 
   return (
@@ -317,6 +345,39 @@ function App() {
             </Button>
           </Grid>
         </Grid>
+        {algosRan && (
+          <>
+          <Grid item>
+          {RMSfailed ? (
+            <div>
+            RMS failed 
+            </div>
+          ) : (
+            <div>
+            RMS passed
+            </div>
+          )}
+          {EDFfailed ? (
+            <div>
+            EDF failed
+            </div>
+          ) : (
+            <div>
+            EDF passed
+            </div>
+          )}
+          {LLFfailed ? (
+            <div>
+            LLF failed
+            </div>
+          ) : (
+            <div>
+            LLF passed
+            </div>
+          )}
+        </Grid>
+          </>
+        )}
       </Grid>
     </Container>
   );
