@@ -6,9 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import Algos from './Algos';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Algos />
-  </React.StrictMode>,
+    <App />,
   document.getElementById('root')
 );
 
