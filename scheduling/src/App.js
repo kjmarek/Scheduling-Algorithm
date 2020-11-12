@@ -11,6 +11,9 @@ const useStyles = makeStyles(theme => ({
   smallInput: {
     width: "60px"
   },
+  mediumInput: {
+    width: "120px"
+  },
   spacer: {
     height: theme.spacing(2)
   }
@@ -19,6 +22,7 @@ const useStyles = makeStyles(theme => ({
 function App() {
   const classes = useStyles();
   const [numProcesses, setNumProcesses] = useState(1);
+  const [time, setTime] = useState('');
 
   const [process1C, setProcess1C] = useState('');
   const [process1P, setProcess1P] = useState('');
@@ -65,9 +69,54 @@ function App() {
     setProcess5P(e.target.value);
   }
 
-
   const handleNumProcessesSelect = (e) => {
     setNumProcesses(e.target.value);
+  }
+
+  const handleTime = (e) => {
+    setTime(e.target.value);
+  }
+
+  const calculateThingies = () => {
+    var taskSet;
+    switch(numProcesses) {
+      default:
+        taskSet = [
+          {ci: parseInt(process1C), pi: parseInt(process1P), cli: parseInt(process1C), di: parseInt(process1P)}
+        ];
+        break;
+      case 2:
+        taskSet = [
+          {ci: parseInt(process1C), pi: parseInt(process1P), cli: parseInt(process1C), di: parseInt(process1P)},
+          {ci: parseInt(process2C), pi: parseInt(process2P), cli: parseInt(process2C), di: parseInt(process2P)}
+        ];
+        break;
+      case 3: 
+        taskSet = [
+          {ci: parseInt(process1C), pi: parseInt(process1P), cli: parseInt(process1C), di: parseInt(process1P)},
+          {ci: parseInt(process2C), pi: parseInt(process2P), cli: parseInt(process2C), di: parseInt(process2P)},
+          {ci: parseInt(process3C), pi: parseInt(process3P), cli: parseInt(process3C), di: parseInt(process3P)}
+        ];
+        break;
+      case 4:
+        taskSet = [
+          {ci: parseInt(process1C), pi: parseInt(process1P), cli: parseInt(process1C), di: parseInt(process1P)},
+          {ci: parseInt(process2C), pi: parseInt(process2P), cli: parseInt(process2C), di: parseInt(process2P)},
+          {ci: parseInt(process3C), pi: parseInt(process3P), cli: parseInt(process3C), di: parseInt(process3P)},
+          {ci: parseInt(process4C), pi: parseInt(process4P), cli: parseInt(process4C), di: parseInt(process4P)}
+        ];
+        break;
+      case 5:
+        taskSet = [
+          {ci: parseInt(process1C), pi: parseInt(process1P), cli: parseInt(process1C), di: parseInt(process1P)},
+          {ci: parseInt(process2C), pi: parseInt(process2P), cli: parseInt(process2C), di: parseInt(process2P)},
+          {ci: parseInt(process3C), pi: parseInt(process3P), cli: parseInt(process3C), di: parseInt(process3P)},
+          {ci: parseInt(process4C), pi: parseInt(process4P), cli: parseInt(process4C), di: parseInt(process4P)},
+          {ci: parseInt(process5C), pi: parseInt(process5P), cli: parseInt(process5C), di: parseInt(process5P)}
+        ];
+        break;
+    }
+    console.log(taskSet);
   }
 
   return (
@@ -248,7 +297,22 @@ function App() {
             </Grid>
           )}
           <Grid item>
-            <Button variant="contained" color="primary" >
+            <Grid container direction="row" justify="center" alignItems="center" spacing={1}>
+              <Grid item><Typography>Computation Time</Typography></Grid>
+              <Grid item>
+                <TextField 
+                  label="Time"
+                  className={classes.mediumInput}
+                  value={time}
+                  onChange={handleTime}
+                  variant="outlined"
+                  size="small"
+                />
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item>
+            <Button variant="contained" color="primary" onClick={calculateThingies}>
               Calculate
             </Button>
           </Grid>
