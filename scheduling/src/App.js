@@ -47,12 +47,8 @@ function App() {
   const [DMSpreemptions, setDMSpreemptions] = useState(0);
 
   const [numProcesses, setNumProcesses] = useState(1);
-<<<<<<< HEAD
-  const [time, setTime] = useState("");
-=======
   const [time, setTime] = useState('');
   const [data, setData] = useState([]);
->>>>>>> 0bfc98c5ce6c860a127b93bd77f4d39fd37bae48
 
   const [process1C, setProcess1C] = useState("");
   const [process1P, setProcess1P] = useState("");
@@ -308,202 +304,6 @@ function App() {
   };
 
   return (
-<<<<<<< HEAD
-    <Container maxWidth="md">
-      <Grid container direction="column" justify="center" alignItems="center">
-        <Grid item>
-          <Typography variant="h3">Algorithm Scheduling</Typography>
-        </Grid>
-        <Grid item>
-          <Typography variant="h5">By: Kyle Marek and Griffin Stout</Typography>
-        </Grid>
-      </Grid>
-      <div className={classes.spacer} />
-      <Grid
-        container
-        direction="column"
-        alignItems="flex-start"
-        justify="center"
-      >
-        <Grid item>
-          <Typography variant="h6">Select the number of processes:</Typography>
-        </Grid>
-        <Grid item>
-          <FormControl className={classes.formControl}>
-            <InputLabel id="demo-simple-select-label">
-              Number of Processes
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={numProcesses}
-              onChange={handleNumProcessesSelect}
-            >
-              <MenuItem value={1}>1</MenuItem>
-              <MenuItem value={2}>2</MenuItem>
-              <MenuItem value={3}>3</MenuItem>
-              <MenuItem value={4}>4</MenuItem>
-              <MenuItem value={5}>5</MenuItem>
-            </Select>
-          </FormControl>
-        </Grid>
-        <div className={classes.spacer} />
-        <Grid container direction="column" alignItems="flex-start" spacing={2}>
-          <Grid item>
-            <Typography variant="h6">
-              Input details for each process:
-            </Typography>
-          </Grid>
-          {numProcesses >= 1 && (
-            <Grid item>
-              <Grid
-                container
-                direction="row"
-                justify="center"
-                alignItems="center"
-                spacing={1}
-              >
-                <Grid item>
-                  <Typography>Process 1</Typography>
-                </Grid>
-                <Grid item>
-                  <TextField
-                    label="c1"
-                    className={classes.smallInput}
-                    value={process1C}
-                    onChange={handleProcess1C}
-                    variant="outlined"
-                    size="small"
-                  />
-                </Grid>
-                <Grid item>
-                  <TextField
-                    label="p1"
-                    className={classes.smallInput}
-                    value={process1P}
-                    onChange={handleProcess1P}
-                    variant="outlined"
-                    size="small"
-                  />
-                </Grid>
-                <Grid item>
-                  <TextField
-                    label="d1"
-                    className={classes.smallInput}
-                    value={process1D}
-                    onChange={handleProcess1D}
-                    variant="outlined"
-                    size="small"
-                  />
-                </Grid>
-              </Grid>
-            </Grid>
-          )}
-          {numProcesses >= 2 && (
-            <Grid item>
-              <Grid
-                container
-                direction="row"
-                justify="center"
-                alignItems="center"
-                spacing={1}
-              >
-                <Grid item>
-                  <Typography>Process 2</Typography>
-                </Grid>
-                <Grid item>
-                  <TextField
-                    label="c2"
-                    className={classes.smallInput}
-                    value={process2C}
-                    onChange={handleProcess2C}
-                    variant="outlined"
-                    size="small"
-                  />
-                </Grid>
-                <Grid item>
-                  <TextField
-                    label="p2"
-                    className={classes.smallInput}
-                    value={process2P}
-                    onChange={handleProcess2P}
-                    variant="outlined"
-                    size="small"
-                  />
-                </Grid>
-                <Grid item>
-                  <TextField
-                    label="d2"
-                    className={classes.smallInput}
-                    value={process2D}
-                    onChange={handleProcess2D}
-                    variant="outlined"
-                    size="small"
-                  />
-                </Grid>
-              </Grid>
-            </Grid>
-          )}
-          {numProcesses >= 3 && (
-            <Grid item>
-              <Grid
-                container
-                direction="row"
-                justify="center"
-                alignItems="center"
-                spacing={1}
-              >
-                <Grid item>
-                  <Typography>Process 3</Typography>
-                </Grid>
-                <Grid item>
-                  <TextField
-                    label="c3"
-                    className={classes.smallInput}
-                    value={process3C}
-                    onChange={handleProcess3C}
-                    variant="outlined"
-                    size="small"
-                  />
-                </Grid>
-                <Grid item>
-                  <TextField
-                    label="p3"
-                    className={classes.smallInput}
-                    value={process3P}
-                    onChange={handleProcess3P}
-                    variant="outlined"
-                    size="small"
-                  />
-                </Grid>
-                <Grid item>
-                  <TextField
-                    label="d3"
-                    className={classes.smallInput}
-                    value={process3D}
-                    onChange={handleProcess3D}
-                    variant="outlined"
-                    size="small"
-                  />
-                </Grid>
-              </Grid>
-            </Grid>
-          )}
-          {numProcesses >= 4 && (
-            <Grid item>
-              <Grid
-                container
-                direction="row"
-                justify="center"
-                alignItems="center"
-                spacing={1}
-              >
-                <Grid item>
-                  <Typography>Process 4</Typography>
-                </Grid>
-                <Grid item>
-                  <TextField
-=======
     <div>
       <Container maxWidth="md">
         <Grid container  direction="column" justify="center" alignItems="center">
@@ -663,7 +463,6 @@ function App() {
                   <Grid item><Typography>Process 4</Typography></Grid>
                   <Grid item>
                   <TextField 
->>>>>>> 0bfc98c5ce6c860a127b93bd77f4d39fd37bae48
                     label="c4"
                     className={classes.smallInput}
                     value={process4C}
@@ -671,70 +470,6 @@ function App() {
                     variant="outlined"
                     size="small"
                   />
-<<<<<<< HEAD
-                </Grid>
-                <Grid item>
-                  <TextField
-                    label="p4"
-                    className={classes.smallInput}
-                    value={process4P}
-                    onChange={handleProcess4P}
-                    variant="outlined"
-                    size="small"
-                  />
-                </Grid>
-                <Grid item>
-                  <TextField
-                    label="d4"
-                    className={classes.smallInput}
-                    value={process4D}
-                    onChange={handleProcess4D}
-                    variant="outlined"
-                    size="small"
-                  />
-                </Grid>
-              </Grid>
-            </Grid>
-          )}
-          {numProcesses >= 5 && (
-            <Grid item>
-              <Grid
-                container
-                direction="row"
-                justify="center"
-                alignItems="center"
-                spacing={1}
-              >
-                <Grid item>
-                  <Typography>Process 5</Typography>
-                </Grid>
-                <Grid item>
-                  <TextField
-                    label="c5"
-                    className={classes.smallInput}
-                    value={process5C}
-                    onChange={handleProcess5C}
-                    variant="outlined"
-                    size="small"
-                  />
-                </Grid>
-                <Grid item>
-                  <TextField
-                    label="p5"
-                    className={classes.smallInput}
-                    value={process5P}
-                    onChange={handleProcess5P}
-                    variant="outlined"
-                    size="small"
-                  />
-                </Grid>
-                <Grid item>
-                  <TextField
-                    label="d5"
-                    className={classes.smallInput}
-                    value={process5D}
-                    onChange={handleProcess5D}
-=======
                   </Grid>
                   <Grid item>
                   <TextField 
@@ -805,79 +540,12 @@ function App() {
                     className={classes.mediumInput}
                     value={time}
                     onChange={handleTime}
->>>>>>> 0bfc98c5ce6c860a127b93bd77f4d39fd37bae48
                     variant="outlined"
                     size="small"
                   />
                 </Grid>
               </Grid>
             </Grid>
-<<<<<<< HEAD
-          )}
-          <Grid item>
-            <Grid
-              container
-              direction="row"
-              justify="center"
-              alignItems="center"
-              spacing={1}
-            >
-              <Grid item>
-                <Typography>Computation Time</Typography>
-              </Grid>
-              <Grid item>
-                <TextField
-                  label="Time"
-                  className={classes.mediumInput}
-                  value={time}
-                  onChange={handleTime}
-                  variant="outlined"
-                  size="small"
-                />
-              </Grid>
-            </Grid>
-          </Grid>
-          <Grid item>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={calculateThingies}
-            >
-              Calculate
-            </Button>
-          </Grid>
-        </Grid>
-        {algosRan && (
-          <>
-            <Grid item>
-              {RMSfailed ? (
-                <div>RMS failed</div>
-              ) : (
-                <div>RMS passed, preemptions: {RMSpreemptions}</div>
-              )}
-              {EDFfailed ? (
-                <div>EDF failed</div>
-              ) : (
-                <div>EDF passed, preemptions: {EDFpreemptions}</div>
-              )}
-              {LLFfailed ? (
-                <div>LLF failed</div>
-              ) : (
-                <div>LLF passed, preemptions: {LLFpreemptions}</div>
-              )}
-              {DMSfailed ? (
-                <div>DMS failed</div>
-              ) : (
-                <div>DMS passed, preemptions: {DMSpreemptions}</div>
-              )}
-            </Grid>
-          </>
-        )}
-      </Grid>
-      <Chart
-        width={"100%"}
-        height={"200px"}
-=======
             <Grid item>
               <Button variant="contained" color="primary" onClick={calculateThingies}>
                 Calculate
@@ -923,7 +591,6 @@ function App() {
         <Chart
         width={'100%'}
         height={'200px'}
->>>>>>> 0bfc98c5ce6c860a127b93bd77f4d39fd37bae48
         chartType="Timeline"
         loader={<div>Loading Chart</div>}
         data={[
@@ -937,10 +604,6 @@ function App() {
           ["RMS", "John Adams", 2000, 3000],
           ["RMS", "George Washington", 3000, 4000],
         ]}
-<<<<<<< HEAD
-        rootProps={{ "data-testid": "3" }}
-=======
->>>>>>> 0bfc98c5ce6c860a127b93bd77f4d39fd37bae48
       />
     </Container>
     </div>
