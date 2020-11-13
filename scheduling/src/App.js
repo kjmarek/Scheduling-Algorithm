@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Container, Grid, Typography, FormControl, MenuItem, InputLabel, Select, TextField, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import { RMS, EDF, LLF } from './Algorithms';
+import Chart from 'react-google-charts';
 
 require('typeface-roboto');
 
@@ -38,47 +39,67 @@ function App() {
 
   const [process1C, setProcess1C] = useState('');
   const [process1P, setProcess1P] = useState('');
+  const [process1D, setProcess1D] = useState('');
   const handleProcess1C = (e) => {
     setProcess1C(e.target.value);
   }
   const handleProcess1P = (e) => {
     setProcess1P(e.target.value);
   }
+  const handleProcess1D = (e) => {
+    setProcess1D(e.target.value);
+  }
 
   const [process2C, setProcess2C] = useState('');
   const [process2P, setProcess2P] = useState('');
+  const [process2D, setProcess2D] = useState('');
   const handleProcess2C = (e) => {
     setProcess2C(e.target.value);
   }
   const handleProcess2P = (e) => {
     setProcess2P(e.target.value);
   }
+  const handleProcess2D = (e) => {
+    setProcess2D(e.target.value);
+  }
 
   const [process3C, setProcess3C] = useState('');
   const [process3P, setProcess3P] = useState('');
+  const [process3D, setProcess3D] = useState('');
   const handleProcess3C = (e) => {
     setProcess3C(e.target.value);
   }
   const handleProcess3P = (e) => {
     setProcess3P(e.target.value);
   }
+  const handleProcess3D = (e) => {
+    setProcess3D(e.target.value);
+  }
 
   const [process4C, setProcess4C] = useState('');
   const [process4P, setProcess4P] = useState('');
+  const [process4D, setProcess4D] = useState('');
   const handleProcess4C = (e) => {
     setProcess4C(e.target.value);
   }
   const handleProcess4P = (e) => {
     setProcess4P(e.target.value);
   }
+  const handleProcess4D = (e) => {
+    setProcess4D(e.target.value);
+  }
 
   const [process5C, setProcess5C] = useState('');
   const [process5P, setProcess5P] = useState('');
+  const [process5D, setProcess5D] = useState('');
   const handleProcess5C = (e) => {
     setProcess5C(e.target.value);
   }
   const handleProcess5P = (e) => {
     setProcess5P(e.target.value);
+  }
+  const handleProcess5D = (e) => {
+    setProcess5D(e.target.value);
   }
 
   const handleNumProcessesSelect = (e) => {
@@ -94,37 +115,37 @@ function App() {
     switch(numProcesses) {
       default:
         taskSet = [
-          {ci: parseInt(process1C), pi: parseInt(process1P), cli: parseInt(process1C), di: parseInt(process1P)}
+          {ci: parseInt(process1C), pi: parseInt(process1P), d: parseInt(process1D), cli: parseInt(process1C), di: parseInt(process1P), dc: parseInt(process1D)}
         ];
         break;
       case 2:
         taskSet = [
-          {ci: parseInt(process1C), pi: parseInt(process1P), cli: parseInt(process1C), di: parseInt(process1P)},
-          {ci: parseInt(process2C), pi: parseInt(process2P), cli: parseInt(process2C), di: parseInt(process2P)}
+          {ci: parseInt(process1C), pi: parseInt(process1P), d: parseInt(process1D), cli: parseInt(process1C), di: parseInt(process1P), dc: parseInt(process1D)},
+          {ci: parseInt(process2C), pi: parseInt(process2P), d: parseInt(process2D), cli: parseInt(process2C), di: parseInt(process2P), dc: parseInt(process2D)}
         ];
         break;
       case 3: 
         taskSet = [
-          {ci: parseInt(process1C), pi: parseInt(process1P), cli: parseInt(process1C), di: parseInt(process1P)},
-          {ci: parseInt(process2C), pi: parseInt(process2P), cli: parseInt(process2C), di: parseInt(process2P)},
-          {ci: parseInt(process3C), pi: parseInt(process3P), cli: parseInt(process3C), di: parseInt(process3P)}
+          {ci: parseInt(process1C), pi: parseInt(process1P), d: parseInt(process1D), cli: parseInt(process1C), di: parseInt(process1P), dc: parseInt(process1D)},
+          {ci: parseInt(process2C), pi: parseInt(process2P), d: parseInt(process2D), cli: parseInt(process2C), di: parseInt(process2P), dc: parseInt(process2D)},
+          {ci: parseInt(process3C), pi: parseInt(process3P), d: parseInt(process3D), cli: parseInt(process3C), di: parseInt(process3P), dc: parseInt(process3D)}
         ];
         break;
       case 4:
         taskSet = [
-          {ci: parseInt(process1C), pi: parseInt(process1P), cli: parseInt(process1C), di: parseInt(process1P)},
-          {ci: parseInt(process2C), pi: parseInt(process2P), cli: parseInt(process2C), di: parseInt(process2P)},
-          {ci: parseInt(process3C), pi: parseInt(process3P), cli: parseInt(process3C), di: parseInt(process3P)},
-          {ci: parseInt(process4C), pi: parseInt(process4P), cli: parseInt(process4C), di: parseInt(process4P)}
+          {ci: parseInt(process1C), pi: parseInt(process1P), d: parseInt(process1D), cli: parseInt(process1C), di: parseInt(process1P), dc: parseInt(process1D)},
+          {ci: parseInt(process2C), pi: parseInt(process2P), d: parseInt(process2D), cli: parseInt(process2C), di: parseInt(process2P), dc: parseInt(process2D)},
+          {ci: parseInt(process3C), pi: parseInt(process3P), d: parseInt(process3D), cli: parseInt(process3C), di: parseInt(process3P), dc: parseInt(process3D)},
+          {ci: parseInt(process4C), pi: parseInt(process4P), d: parseInt(process4D), cli: parseInt(process4C), di: parseInt(process4P), dc: parseInt(process4D)}
         ];
         break;
       case 5:
         taskSet = [
-          {ci: parseInt(process1C), pi: parseInt(process1P), cli: parseInt(process1C), di: parseInt(process1P)},
-          {ci: parseInt(process2C), pi: parseInt(process2P), cli: parseInt(process2C), di: parseInt(process2P)},
-          {ci: parseInt(process3C), pi: parseInt(process3P), cli: parseInt(process3C), di: parseInt(process3P)},
-          {ci: parseInt(process4C), pi: parseInt(process4P), cli: parseInt(process4C), di: parseInt(process4P)},
-          {ci: parseInt(process5C), pi: parseInt(process5P), cli: parseInt(process5C), di: parseInt(process5P)}
+          {ci: parseInt(process1C), pi: parseInt(process1P), d: parseInt(process1D), cli: parseInt(process1C), di: parseInt(process1P), dc: parseInt(process1D)},
+          {ci: parseInt(process2C), pi: parseInt(process2P), d: parseInt(process2D), cli: parseInt(process2C), di: parseInt(process2P), dc: parseInt(process2D)},
+          {ci: parseInt(process3C), pi: parseInt(process3P), d: parseInt(process3D), cli: parseInt(process3C), di: parseInt(process3P), dc: parseInt(process3D)},
+          {ci: parseInt(process4C), pi: parseInt(process4P), d: parseInt(process4D), cli: parseInt(process4C), di: parseInt(process4P), dc: parseInt(process4D)},
+          {ci: parseInt(process5C), pi: parseInt(process5P), d: parseInt(process5D), cli: parseInt(process5C), di: parseInt(process5P), dc: parseInt(process5D)}
         ];
         break;
     }
@@ -226,6 +247,16 @@ function App() {
                   size="small"
                 />
                 </Grid>
+                <Grid item>
+                <TextField 
+                  label="d1"
+                  className={classes.smallInput}
+                  value={process1D}
+                  onChange={handleProcess1D}
+                  variant="outlined"
+                  size="small"
+                />
+                </Grid>
               </Grid>
             </Grid>
           )}
@@ -249,6 +280,16 @@ function App() {
                   className={classes.smallInput}
                   value={process2P}
                   onChange={handleProcess2P}
+                  variant="outlined"
+                  size="small"
+                />
+                </Grid>
+                <Grid item>
+                <TextField 
+                  label="d2"
+                  className={classes.smallInput}
+                  value={process2D}
+                  onChange={handleProcess2D}
                   variant="outlined"
                   size="small"
                 />
@@ -280,6 +321,16 @@ function App() {
                   size="small"
                 />
                 </Grid>
+                <Grid item>
+                <TextField 
+                  label="d3"
+                  className={classes.smallInput}
+                  value={process3D}
+                  onChange={handleProcess3D}
+                  variant="outlined"
+                  size="small"
+                />
+                </Grid>
               </Grid>
             </Grid>
           )}
@@ -307,6 +358,16 @@ function App() {
                   size="small"
                 />
                 </Grid>
+                <Grid item>
+                <TextField 
+                  label="d4"
+                  className={classes.smallInput}
+                  value={process4D}
+                  onChange={handleProcess4D}
+                  variant="outlined"
+                  size="small"
+                />
+                </Grid>
               </Grid>
             </Grid>
           )}
@@ -330,6 +391,16 @@ function App() {
                   className={classes.smallInput}
                   value={process5P}
                   onChange={handleProcess5P}
+                  variant="outlined"
+                  size="small"
+                />
+                </Grid>
+                <Grid item>
+                <TextField 
+                  label="d5"
+                  className={classes.smallInput}
+                  value={process5D}
+                  onChange={handleProcess5D}
                   variant="outlined"
                   size="small"
                 />
@@ -392,6 +463,106 @@ function App() {
           </>
         )}
       </Grid>
+      <Chart>
+        width={'100%'}
+        height={'400px'}
+        chartType="Timeline"
+        loader={<div>Loading chart...</div>}
+        data={[
+          [
+            { type: 'string', id: 'Position' },
+            { type: 'string', id: 'Name' },
+            { type: 'date', id: 'Start' },
+            { type: 'date', id: 'End' },
+          ],
+          [
+            'President',
+            'George Washington',
+            new Date(1789, 3, 30),
+            new Date(1797, 2, 4),
+          ],
+          ['President', 'John Adams', new Date(1797, 2, 4), new Date(1801, 2, 4)],
+          [
+            'President',
+            'Thomas Jefferson',
+            new Date(1801, 2, 4),
+            new Date(1809, 2, 4),
+          ],
+          [
+            'Vice President',
+            'John Adams',
+            new Date(1789, 3, 21),
+            new Date(1797, 2, 4),
+          ],
+          [
+            'Vice President',
+            'Thomas Jefferson',
+            new Date(1797, 2, 4),
+            new Date(1801, 2, 4),
+          ],
+          [
+            'Vice President',
+            'Aaron Burr',
+            new Date(1801, 2, 4),
+            new Date(1805, 2, 4),
+          ],
+          [
+            'Vice President',
+            'George Clinton',
+            new Date(1805, 2, 4),
+            new Date(1812, 3, 20),
+          ],
+          [
+            'Secretary of State',
+            'John Jay',
+            new Date(1789, 8, 25),
+            new Date(1790, 2, 22),
+          ],
+          [
+            'Secretary of State',
+            'Thomas Jefferson',
+            new Date(1790, 2, 22),
+            new Date(1793, 11, 31),
+          ],
+          [
+            'Secretary of State',
+            'Edmund Randolph',
+            new Date(1794, 0, 2),
+            new Date(1795, 7, 20),
+          ],
+          [
+            'Secretary of State',
+            'Timothy Pickering',
+            new Date(1795, 7, 20),
+            new Date(1800, 4, 12),
+          ],
+          [
+            'Secretary of State',
+            'Charles Lee',
+            new Date(1800, 4, 13),
+            new Date(1800, 5, 5),
+          ],
+          [
+            'Secretary of State',
+            'John Marshall',
+            new Date(1800, 5, 13),
+            new Date(1801, 2, 4),
+          ],
+          [
+            'Secretary of State',
+            'Levi Lincoln',
+            new Date(1801, 2, 5),
+            new Date(1801, 4, 1),
+          ],
+          [
+            'Secretary of State',
+            'James Madison',
+            new Date(1801, 4, 2),
+            new Date(1809, 2, 3),
+          ],
+        ]}
+        rootProps={{ 'data-testid': '3' }}
+      </Chart>
     </Container>
   );
 }
