@@ -653,9 +653,10 @@ function App() {
           {algosRan && (
             <>
               <Grid item>
-                {RMSfailed ? <div>RMS failed</div> : <div>RMS passed</div>}
-                {EDFfailed ? <div>EDF failed</div> : <div>EDF passed</div>}
-                {LLFfailed ? <div>LLF failed</div> : <div>LLF passed</div>}
+                {RMSfailed ? <div>RMS failed</div> : <div>RMS passed, preemptions {RMSpreemptions}</div>}
+                {EDFfailed ? <div>EDF failed</div> : <div>EDF passed, preemptions {EDFpreemptions}</div>}
+                {LLFfailed ? <div>LLF failed</div> : <div>LLF passed, preemptions {LLFpreemptions}</div>}
+                {DMSfailed ? <div>DMS failed</div> : <div>DMS passed, preemptions {DMSpreemptions}</div>}
               </Grid>
             </>
           )}
