@@ -7,13 +7,9 @@ export function RMS(itemsIn, time) {
   // shortest deadline first for certain amount of time
   var y = 1;
   var indexOfShortest = -1;
-
-  // a preemption is when one task interrupts another before it gets completed
-  // if the indexOfShortest changes and that previous task doesn't have ci === cli or no computation left then it is interrupted
-
   for (y; y <= time; y++) {
 
-    // find shortest pi of the array that has computation left and gives back the index of the items array that it is at
+    // find shortest d of the array that has computation left and gives back the index of the items array that it is at
     // it should do this for every time period to determine which of the tasks should run for one time period
     var i = 0;
     var shortest = time + 1;
@@ -23,7 +19,7 @@ export function RMS(itemsIn, time) {
     for(i; i < items.length; i++) {
       if (items[i].cli > 0) { // if it has computation left
         noneToRun = false; // there is something to run
-        if (items[i].pi < shortest) { // if its deadline is shorter
+        if (items[i].pi < shortest) { // if its dynamic period is shorter
           shortest = items[i].pi;
           indexOfShortest = i;
         }
@@ -52,20 +48,24 @@ export function RMS(itemsIn, time) {
 
     var x = 0;
     for(x; x < items.length; x++) {
-      if (items[x].di === y) {
-        console.log("deadline equals time");
-        console.log(items[x]);
+      if (items[x].d === y) {
+        // check if it failed to compute witin its deadline time not period
         if (items[x].cli > 0) {
-          // the task passed its deadline without finishing computat ion
+          // the task passed its deadline without finishing computation
           console.log("failed");
           return { passed: false, intervals: intervals, preemptions: preemptions };
         }
-        else {
-          // the task finished computation before passing its deadline
-          // set the new remaining computation time and deadline
-          items[x].cli = items[x].ci;
-          items[x].di = items[x].di + items[x].pi;
-        }
+      }
+      if (items[x].di === y) {
+        // checks for period time and resets period and new deadline
+        console.log("deadline equals time");
+        console.log(items[x]);
+
+        // the task finished computation before passing its deadline
+        // set the new remaining computation time and deadline
+        items[x].cli = items[x].ci;
+        items[x].d = items[x].di + items[x].dc; // last period end plus the deadline time is new deadline
+        items[x].di = items[x].di + items[x].pi; // new deadline is plus period
       }
     };
   }
@@ -75,7 +75,7 @@ export function RMS(itemsIn, time) {
   console.log("* RMS end *");
 
   return { passed: true, intervals: intervals, preemptions: preemptions };
-}
+};
 
 export function EDF(itemsIn, time) {
   var items = JSON.parse(JSON.stringify(itemsIn));

@@ -1,0 +1,2 @@
+(3, 12, 12) (3, 12, 12) (8,16, 16) time = 50 just like hw1/ llf and edf are different
+(1, 5, 4) (3, 6, 3) time = 28 just like hw1/ rms and dms are different
