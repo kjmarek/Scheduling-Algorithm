@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Grid, Typography, FormControl, MenuItem, InputLabel, Select, TextField, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
-import { RMS, EDF, LLF } from './Algorithms';
+import { RMS, EDF, LLF, DMS } from './Algorithms';
 import Chart from 'react-google-charts';
 
 require('typeface-roboto');
@@ -29,10 +29,12 @@ function App() {
   const [RMSfailed, setRMSfailed] = useState(false);
   const [EDFfailed, setEDFfailed] = useState(false);
   const [LLFfailed, setLLFfailed] = useState(false);
+  const [DMSfailed, setDMSfailed] = useState(false);
 
   const [RMSpreemptions, setRMSpreemptions] = useState(0);
   const [EDFpreemptions, setEDFpreemptions] = useState(0);
   const [LLFpreemptions, setLLFpreemptions] = useState(0);
+  const [DMSpreemptions, setDMSpreemptions] = useState(0);
 
   const [numProcesses, setNumProcesses] = useState(1);
   const [time, setTime] = useState('');
@@ -177,6 +179,14 @@ function App() {
       setLLFfailed(false);
       setLLFpreemptions(llf.preemptions);
       // call output function
+    }
+    var dms = DMS(taskSet, time);
+    if (dms.passed === false) {
+      setDMSfailed(true);
+    }
+    else {
+      setDMSfailed(false);
+      setDMSpreemptions(dms.preemptions);
     }
     setAlgosRan(true);
   }
@@ -459,110 +469,47 @@ function App() {
             LLF passed, preemptions: {LLFpreemptions}
             </div>
           )}
+          {DMSfailed ? (
+            <div>
+            DMS failed
+            </div>
+          ) : (
+            <div>
+            DMS passed, preemptions: {DMSpreemptions}
+            </div>
+          )}
         </Grid>
           </>
         )}
       </Grid>
-      <Chart>
+      <Chart
         width={'100%'}
-        height={'400px'}
+        height={'200px'}
         chartType="Timeline"
-        loader={<div>Loading chart...</div>}
+        loader={<div>Loading Chart</div>}
         data={[
           [
             { type: 'string', id: 'Position' },
             { type: 'string', id: 'Name' },
-            { type: 'date', id: 'Start' },
-            { type: 'date', id: 'End' },
+            { type: 'number', id: 'Start' },
+            { type: 'number', id: 'End' },
           ],
           [
-            'President',
+            'RMS',
             'George Washington',
-            new Date(1789, 3, 30),
-            new Date(1797, 2, 4),
+            0,
+            2000,
           ],
-          ['President', 'John Adams', new Date(1797, 2, 4), new Date(1801, 2, 4)],
+          ['RMS', 'John Adams', 2000, 3000],
           [
-            'President',
-            'Thomas Jefferson',
-            new Date(1801, 2, 4),
-            new Date(1809, 2, 4),
-          ],
-          [
-            'Vice President',
-            'John Adams',
-            new Date(1789, 3, 21),
-            new Date(1797, 2, 4),
-          ],
-          [
-            'Vice President',
-            'Thomas Jefferson',
-            new Date(1797, 2, 4),
-            new Date(1801, 2, 4),
-          ],
-          [
-            'Vice President',
-            'Aaron Burr',
-            new Date(1801, 2, 4),
-            new Date(1805, 2, 4),
-          ],
-          [
-            'Vice President',
-            'George Clinton',
-            new Date(1805, 2, 4),
-            new Date(1812, 3, 20),
-          ],
-          [
-            'Secretary of State',
-            'John Jay',
-            new Date(1789, 8, 25),
-            new Date(1790, 2, 22),
-          ],
-          [
-            'Secretary of State',
-            'Thomas Jefferson',
-            new Date(1790, 2, 22),
-            new Date(1793, 11, 31),
-          ],
-          [
-            'Secretary of State',
-            'Edmund Randolph',
-            new Date(1794, 0, 2),
-            new Date(1795, 7, 20),
-          ],
-          [
-            'Secretary of State',
-            'Timothy Pickering',
-            new Date(1795, 7, 20),
-            new Date(1800, 4, 12),
-          ],
-          [
-            'Secretary of State',
-            'Charles Lee',
-            new Date(1800, 4, 13),
-            new Date(1800, 5, 5),
-          ],
-          [
-            'Secretary of State',
-            'John Marshall',
-            new Date(1800, 5, 13),
-            new Date(1801, 2, 4),
-          ],
-          [
-            'Secretary of State',
-            'Levi Lincoln',
-            new Date(1801, 2, 5),
-            new Date(1801, 4, 1),
-          ],
-          [
-            'Secretary of State',
-            'James Madison',
-            new Date(1801, 4, 2),
-            new Date(1809, 2, 3),
+            'RMS',
+            'George Washington',
+            3000,
+            4000,
           ],
         ]}
         rootProps={{ 'data-testid': '3' }}
-      </Chart>
+      />
     </Container>
   );
 }
