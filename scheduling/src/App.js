@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Grid, Typography, FormControl, MenuItem, InputLabel, Select, TextField, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
-import { RMS, EDF, LLF } from './Algorithms';
+import { RMS, EDF, LLF, DMS } from './Algorithms';
 import Chart from 'react-google-charts';
 
 require('typeface-roboto');
@@ -29,6 +29,12 @@ function App() {
   const [RMSfailed, setRMSfailed] = useState(false);
   const [EDFfailed, setEDFfailed] = useState(false);
   const [LLFfailed, setLLFfailed] = useState(false);
+  const [DMSfailed, setDMSfailed] = useState(false);
+
+  const [RMSpreemptions, setRMSpreemptions] = useState(0);
+  const [EDFpreemptions, setEDFpreemptions] = useState(0);
+  const [LLFpreemptions, setLLFpreemptions] = useState(0);
+  const [DMSpreemptions, setDMSpreemptions] = useState(0);
 
   const [numProcesses, setNumProcesses] = useState(1);
   const [time, setTime] = useState('');
@@ -148,23 +154,40 @@ function App() {
     }
     console.log(taskSet);
     console.log("Begin schedules");
-    if (RMS(taskSet, time) === "failed") {
+    var rms = RMS(taskSet, time);
+    if (rms.passed === false) {
       setRMSfailed(true);
     }
     else {
       setRMSfailed(false);
+      setRMSpreemptions(rms.preemptions);
+      // call output function
     }
-    if (EDF(taskSet, time) === "failed") {
+    var edf = EDF(taskSet, time);
+    if (edf.passed === false) {
       setEDFfailed(true);
     }
     else {
       setEDFfailed(false);
+      setEDFpreemptions(edf.preemptions);
+      // call output function
     }
-    if (LLF(taskSet, time) === "failed") {
+    var llf = LLF(taskSet, time);
+    if (llf.passed === false) {
       setLLFfailed(true);
     }
     else {
       setLLFfailed(false);
+      setLLFpreemptions(llf.preemptions);
+      // call output function
+    }
+    var dms = DMS(taskSet, time);
+    if (dms.passed === false) {
+      setDMSfailed(true);
+    }
+    else {
+      setDMSfailed(false);
+      setDMSpreemptions(dms.preemptions);
     }
     setAlgosRan(true);
   }
@@ -456,12 +479,32 @@ function App() {
       <Container size="lg">
         <Chart
         width={'100%'}
-        height={'400px'}
+        height={'200px'}
         chartType="Timeline"
-        loader={<div>Loading chart...</div>}
-        data={data}
-        />
-      </Container>
+        loader={<div>Loading Chart</div>}
+        data={[
+          [
+            { type: 'string', id: 'Position' },
+            { type: 'string', id: 'Name' },
+            { type: 'number', id: 'Start' },
+            { type: 'number', id: 'End' },
+          ],
+          [
+            'RMS',
+            'George Washington',
+            0,
+            2000,
+          ],
+          ['RMS', 'John Adams', 2000, 3000],
+          [
+            'RMS',
+            'George Washington',
+            3000,
+            4000,
+          ],
+        ]}
+      />
+    </Container>
     </div>
   );
 }
