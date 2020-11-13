@@ -120,11 +120,11 @@ function App() {
   };
 
   const handleTime = (e) => {
-    if (parseInt(e.target.value) > 50) {
-      setTime(50);
-    } else {
-      setTime(e.target.value);
-    }
+    //if (parseInt(e.target.value) > 50) {
+    //  setTime(50);
+    //} else {
+    setTime(e.target.value);
+    //}
   };
 
   const calculateThingies = () => {
@@ -652,27 +652,49 @@ function App() {
               </Button>
             </Grid>
           </Grid>
-          {algosRan && (
-            <>
-              <Grid item>
-                {RMSfailed ? <div>RMS failed</div> : <div>RMS passed, preemptions {RMSpreemptions}</div>}
-                {EDFfailed ? <div>EDF failed</div> : <div>EDF passed, preemptions {EDFpreemptions}</div>}
-                {LLFfailed ? <div>LLF failed</div> : <div>LLF passed, preemptions {LLFpreemptions}</div>}
-                {DMSfailed ? <div>DMS failed</div> : <div>DMS passed, preemptions {DMSpreemptions}</div>}
-              </Grid>
-            </>
-          )}
         </Grid>
       </Container>
+      <div className={classes.spacer} />
+      <div className={classes.spacer} />
       {algosRan && (
         <Container size="lg">
-          <Chart
-            width={"100%"}
-            height={"300px"}
-            chartType="Timeline"
-            loader={<div>Loading Chart</div>}
-            data={data}
-          />
+          <Grid container direction="column" >
+            <Grid item>
+            <div>
+                Note: units are in seconds due to graph restrictions. Any total
+                time &gt; 60 goes into a new 'minute' on the scale
+              </div>
+              <Chart
+                width={"100%"}
+                height={"215px"}
+                chartType="Timeline"
+                loader={<div>Loading Chart</div>}
+                data={data}
+              />
+            </Grid>
+            <Grid item>
+              {RMSfailed ? (
+                <div>RMS failed</div>
+              ) : (
+                <div>RMS passed, preemptions {RMSpreemptions}</div>
+              )}
+              {EDFfailed ? (
+                <div>EDF failed</div>
+              ) : (
+                <div>EDF passed, preemptions {EDFpreemptions}</div>
+              )}
+              {LLFfailed ? (
+                <div>LLF failed</div>
+              ) : (
+                <div>LLF passed, preemptions {LLFpreemptions}</div>
+              )}
+              {DMSfailed ? (
+                <div>DMS failed</div>
+              ) : (
+                <div>DMS passed, preemptions {DMSpreemptions}</div>
+              )}
+            </Grid>
+          </Grid>
         </Container>
       )}
     </div>
