@@ -9,6 +9,7 @@ import {
   Select,
   TextField,
   Button,
+  Paper,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { RMS, EDF, LLF, DMS } from "./Algorithms";
@@ -28,6 +29,16 @@ const useStyles = makeStyles((theme) => ({
   },
   spacer: {
     height: theme.spacing(2),
+  },
+  paper: {
+    padding: theme.spacing(1),
+    minHeight: "50px",
+  },
+  failed: {
+    color: "red",
+  },
+  passed: {
+    color: "green",
   },
 }));
 
@@ -658,9 +669,9 @@ function App() {
       <div className={classes.spacer} />
       {algosRan && (
         <Container size="lg">
-          <Grid container direction="column" >
+          <Grid container direction="column">
             <Grid item>
-            <div>
+              <div>
                 Note: units are in seconds due to graph restrictions. Any total
                 time &gt; 60 goes into a new 'minute' on the scale
               </div>
@@ -673,26 +684,71 @@ function App() {
               />
             </Grid>
             <Grid item>
-              {RMSfailed ? (
-                <div>RMS failed</div>
-              ) : (
-                <div>RMS passed, preemptions {RMSpreemptions}</div>
-              )}
-              {EDFfailed ? (
-                <div>EDF failed</div>
-              ) : (
-                <div>EDF passed, preemptions {EDFpreemptions}</div>
-              )}
-              {LLFfailed ? (
-                <div>LLF failed</div>
-              ) : (
-                <div>LLF passed, preemptions {LLFpreemptions}</div>
-              )}
-              {DMSfailed ? (
-                <div>DMS failed</div>
-              ) : (
-                <div>DMS passed, preemptions {DMSpreemptions}</div>
-              )}
+              <Grid
+                container
+                direction="row"
+                spacing={2}
+                xl={12}
+                lg={12}
+                md={12}
+                sm={6}
+                xs={3}
+              >
+                <Grid item xs={3}>
+                  <Paper elevation={5} className={classes.paper}>
+                    <Typography variant="h6">RMS</Typography>
+                    {RMSfailed ? (
+                      <div className={classes.failed}>FAILED</div>
+                    ) : (
+                      <div>
+                        <span className={classes.passed}>PASSED</span> with{" "}
+                        {RMSpreemptions} preemption(s)
+                      </div>
+                    )}
+                  </Paper>
+                </Grid>
+                <Grid item xs={3}>
+                  <Paper elevation={5} className={classes.paper}>
+                    <Typography variant="h6">EDF</Typography>
+                    {EDFfailed ? (
+                      <div className={classes.failed}>EDF failed</div>
+                    ) : (
+                      <div>
+                        <span className={classes.passed}>PASSED</span> with{" "}
+                        {EDFpreemptions} preemption(s)
+                      </div>
+                    )}
+                  </Paper>
+                </Grid>
+                <Grid item xs={3}>
+                  <Paper elevation={5} className={classes.paper}>
+                    <Typography variant="h6">LLF</Typography>
+                    {LLFfailed ? (
+                      <div className={classes.failed}>LLF failed</div>
+                    ) : (
+                      <div>
+                        <span className={classes.passed}>PASSED</span> with{" "}
+                        {LLFpreemptions} preemption(s)
+                      </div>
+                    )}
+                  </Paper>
+                </Grid>
+                <Grid item xs={3}>
+                  <Paper elevation={5} className={classes.paper}>
+                    <Typography variant="h6">DMS</Typography>
+                    {DMSfailed ? (
+                      <div className={classes.failed}>FAILED</div>
+                    ) : (
+                      <div>
+                        <div>
+                          <span className={classes.passed} PASSED></span> with{" "}
+                          {DMSpreemptions} preemption(s)
+                        </div>
+                      </div>
+                    )}
+                  </Paper>
+                </Grid>
+              </Grid>
             </Grid>
           </Grid>
         </Container>
