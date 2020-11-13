@@ -281,39 +281,41 @@ function App() {
     console.log(taskSet);
     console.log("Begin schedules");
     var rms = RMS(taskSet, time);
+    setChartData("RMS", rms.intervals, dataTmp);
     if (rms.passed === false) {
       setRMSfailed(true);
     } else {
       setRMSfailed(false);
       setRMSpreemptions(rms.preemptions);
-      setChartData("RMS", rms.intervals, dataTmp);
       // call output function
     }
+
     var edf = EDF(taskSet, time);
+    setChartData("EDF", edf.intervals, dataTmp);
     if (edf.passed === false) {
       setEDFfailed(true);
     } else {
       setEDFfailed(false);
       setEDFpreemptions(edf.preemptions);
-      setChartData("EDF", edf.intervals, dataTmp);
       // call output function
     }
+
     var llf = LLF(taskSet, time);
+    setChartData("LLF", llf.intervals, dataTmp);
     if (llf.passed === false) {
       setLLFfailed(true);
     } else {
       setLLFfailed(false);
       setLLFpreemptions(llf.preemptions);
-      setChartData("LLF", llf.intervals, dataTmp);
       // call output function
     }
     var dms = DMS(taskSet, time);
+    setChartData("DMS", dms.intervals, dataTmp);
     if (dms.passed === false) {
       setDMSfailed(true);
     } else {
       setDMSfailed(false);
       setDMSpreemptions(dms.preemptions);
-      setChartData("DMS", dms.intervals, dataTmp);
     }
 
     setData(dataTmp);
