@@ -1,24 +1,34 @@
-import React, { useState } from 'react';
-import { Container, Grid, Typography, FormControl, MenuItem, InputLabel, Select, TextField, Button } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles';
-import { RMS, EDF, LLF, DMS } from './Algorithms';
-import Chart from 'react-google-charts';
+import React, { useState } from "react";
+import {
+  Container,
+  Grid,
+  Typography,
+  FormControl,
+  MenuItem,
+  InputLabel,
+  Select,
+  TextField,
+  Button,
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { RMS, EDF, LLF, DMS } from "./Algorithms";
+import Chart from "react-google-charts";
 
-require('typeface-roboto');
+require("typeface-roboto");
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   formControl: {
-    minWidth: 200
+    minWidth: 200,
   },
   smallInput: {
-    width: "60px"
+    width: "60px",
   },
   mediumInput: {
-    width: "120px"
+    width: "120px",
   },
   spacer: {
-    height: theme.spacing(2)
-  }
+    height: theme.spacing(2),
+  },
 }));
 
 function App() {
@@ -36,119 +46,235 @@ function App() {
   const [LLFpreemptions, setLLFpreemptions] = useState(0);
   const [DMSpreemptions, setDMSpreemptions] = useState(0);
 
-  const [numProcesses, setNumProcesses] = useState(1);
-  const [time, setTime] = useState('');
+  const [numTasks, setNumTasks] = useState(1);
+  const [time, setTime] = useState("");
   const [data, setData] = useState([]);
 
-  const [process1C, setProcess1C] = useState('');
-  const [process1P, setProcess1P] = useState('');
-  const [process1D, setProcess1D] = useState('');
-  const handleProcess1C = (e) => {
-    setProcess1C(e.target.value);
-  }
-  const handleProcess1P = (e) => {
-    setProcess1P(e.target.value);
-  }
-  const handleProcess1D = (e) => {
-    setProcess1D(e.target.value);
-  }
+  const [task1C, setTask1C] = useState("");
+  const [task1P, setTask1P] = useState("");
+  const [task1D, setTask1D] = useState("");
+  const handleTask1C = (e) => {
+    setTask1C(e.target.value);
+  };
+  const handleTask1P = (e) => {
+    setTask1P(e.target.value);
+  };
+  const handleTask1D = (e) => {
+    setTask1D(e.target.value);
+  };
 
-  const [process2C, setProcess2C] = useState('');
-  const [process2P, setProcess2P] = useState('');
-  const [process2D, setProcess2D] = useState('');
-  const handleProcess2C = (e) => {
-    setProcess2C(e.target.value);
-  }
-  const handleProcess2P = (e) => {
-    setProcess2P(e.target.value);
-  }
-  const handleProcess2D = (e) => {
-    setProcess2D(e.target.value);
-  }
+  const [task2C, setTask2C] = useState("");
+  const [task2P, setTask2P] = useState("");
+  const [task2D, setTask2D] = useState("");
+  const handleTask2C = (e) => {
+    setTask2C(e.target.value);
+  };
+  const handleTask2P = (e) => {
+    setTask2P(e.target.value);
+  };
+  const handleTask2D = (e) => {
+    setTask2D(e.target.value);
+  };
 
-  const [process3C, setProcess3C] = useState('');
-  const [process3P, setProcess3P] = useState('');
-  const [process3D, setProcess3D] = useState('');
-  const handleProcess3C = (e) => {
-    setProcess3C(e.target.value);
-  }
-  const handleProcess3P = (e) => {
-    setProcess3P(e.target.value);
-  }
-  const handleProcess3D = (e) => {
-    setProcess3D(e.target.value);
-  }
+  const [task3C, setTask3C] = useState("");
+  const [task3P, setTask3P] = useState("");
+  const [task3D, setTask3D] = useState("");
+  const handleTask3C = (e) => {
+    setTask3C(e.target.value);
+  };
+  const handleTask3P = (e) => {
+    setTask3P(e.target.value);
+  };
+  const handleTask3D = (e) => {
+    setTask3D(e.target.value);
+  };
 
-  const [process4C, setProcess4C] = useState('');
-  const [process4P, setProcess4P] = useState('');
-  const [process4D, setProcess4D] = useState('');
-  const handleProcess4C = (e) => {
-    setProcess4C(e.target.value);
-  }
-  const handleProcess4P = (e) => {
-    setProcess4P(e.target.value);
-  }
-  const handleProcess4D = (e) => {
-    setProcess4D(e.target.value);
-  }
+  const [task4C, setTask4C] = useState("");
+  const [task4P, setTask4P] = useState("");
+  const [task4D, setTask4D] = useState("");
+  const handleTask4C = (e) => {
+    setTask4C(e.target.value);
+  };
+  const handleTask4P = (e) => {
+    setTask4P(e.target.value);
+  };
+  const handleTask4D = (e) => {
+    setTask4D(e.target.value);
+  };
 
-  const [process5C, setProcess5C] = useState('');
-  const [process5P, setProcess5P] = useState('');
-  const [process5D, setProcess5D] = useState('');
-  const handleProcess5C = (e) => {
-    setProcess5C(e.target.value);
-  }
-  const handleProcess5P = (e) => {
-    setProcess5P(e.target.value);
-  }
-  const handleProcess5D = (e) => {
-    setProcess5D(e.target.value);
-  }
+  const [task5C, setTask5C] = useState("");
+  const [task5P, setTask5P] = useState("");
+  const [task5D, setTask5D] = useState("");
+  const handleTask5C = (e) => {
+    setTask5C(e.target.value);
+  };
+  const handleTask5P = (e) => {
+    setTask5P(e.target.value);
+  };
+  const handleTask5D = (e) => {
+    setTask5D(e.target.value);
+  };
 
-  const handleNumProcessesSelect = (e) => {
-    setNumProcesses(e.target.value);
-  }
+  const handleNumTasksSelect = (e) => {
+    setNumTasks(e.target.value);
+  };
 
   const handleTime = (e) => {
-    setTime(e.target.value);
-  }
+    if (parseInt(e.target.value) > 50) {
+      setTime(50);
+    } else {
+      setTime(e.target.value);
+    }
+  };
 
   const calculateThingies = () => {
+    var dataTmp = [];
+    dataTmp.push([
+      { type: "string", id: "Position" },
+      { type: "string", id: "Name" },
+      { type: "number", id: "Start" },
+      { type: "number", id: "End" },
+    ]);
     var taskSet;
-    switch(numProcesses) {
+    switch (numTasks) {
       default:
         taskSet = [
-          {ci: parseInt(process1C), pi: parseInt(process1P), d: parseInt(process1D), cli: parseInt(process1C), di: parseInt(process1P), dc: parseInt(process1D)}
+          {
+            ci: parseInt(task1C),
+            pi: parseInt(task1P),
+            d: parseInt(task1D),
+            cli: parseInt(task1C),
+            di: parseInt(task1P),
+            dc: parseInt(task1D),
+          },
         ];
         break;
       case 2:
         taskSet = [
-          {ci: parseInt(process1C), pi: parseInt(process1P), d: parseInt(process1D), cli: parseInt(process1C), di: parseInt(process1P), dc: parseInt(process1D)},
-          {ci: parseInt(process2C), pi: parseInt(process2P), d: parseInt(process2D), cli: parseInt(process2C), di: parseInt(process2P), dc: parseInt(process2D)}
+          {
+            ci: parseInt(task1C),
+            pi: parseInt(task1P),
+            d: parseInt(task1D),
+            cli: parseInt(task1C),
+            di: parseInt(task1P),
+            dc: parseInt(task1D),
+          },
+          {
+            ci: parseInt(task2C),
+            pi: parseInt(task2P),
+            d: parseInt(task2D),
+            cli: parseInt(task2C),
+            di: parseInt(task2P),
+            dc: parseInt(task2D),
+          },
         ];
         break;
-      case 3: 
+      case 3:
         taskSet = [
-          {ci: parseInt(process1C), pi: parseInt(process1P), d: parseInt(process1D), cli: parseInt(process1C), di: parseInt(process1P), dc: parseInt(process1D)},
-          {ci: parseInt(process2C), pi: parseInt(process2P), d: parseInt(process2D), cli: parseInt(process2C), di: parseInt(process2P), dc: parseInt(process2D)},
-          {ci: parseInt(process3C), pi: parseInt(process3P), d: parseInt(process3D), cli: parseInt(process3C), di: parseInt(process3P), dc: parseInt(process3D)}
+          {
+            ci: parseInt(task1C),
+            pi: parseInt(task1P),
+            d: parseInt(task1D),
+            cli: parseInt(task1C),
+            di: parseInt(task1P),
+            dc: parseInt(task1D),
+          },
+          {
+            ci: parseInt(task2C),
+            pi: parseInt(task2P),
+            d: parseInt(task2D),
+            cli: parseInt(task2C),
+            di: parseInt(task2P),
+            dc: parseInt(task2D),
+          },
+          {
+            ci: parseInt(task3C),
+            pi: parseInt(task3P),
+            d: parseInt(task3D),
+            cli: parseInt(task3C),
+            di: parseInt(task3P),
+            dc: parseInt(task3D),
+          },
         ];
         break;
       case 4:
         taskSet = [
-          {ci: parseInt(process1C), pi: parseInt(process1P), d: parseInt(process1D), cli: parseInt(process1C), di: parseInt(process1P), dc: parseInt(process1D)},
-          {ci: parseInt(process2C), pi: parseInt(process2P), d: parseInt(process2D), cli: parseInt(process2C), di: parseInt(process2P), dc: parseInt(process2D)},
-          {ci: parseInt(process3C), pi: parseInt(process3P), d: parseInt(process3D), cli: parseInt(process3C), di: parseInt(process3P), dc: parseInt(process3D)},
-          {ci: parseInt(process4C), pi: parseInt(process4P), d: parseInt(process4D), cli: parseInt(process4C), di: parseInt(process4P), dc: parseInt(process4D)}
+          {
+            ci: parseInt(task1C),
+            pi: parseInt(task1P),
+            d: parseInt(task1D),
+            cli: parseInt(task1C),
+            di: parseInt(task1P),
+            dc: parseInt(task1D),
+          },
+          {
+            ci: parseInt(task2C),
+            pi: parseInt(task2P),
+            d: parseInt(task2D),
+            cli: parseInt(task2C),
+            di: parseInt(task2P),
+            dc: parseInt(task2D),
+          },
+          {
+            ci: parseInt(task3C),
+            pi: parseInt(task3P),
+            d: parseInt(task3D),
+            cli: parseInt(task3C),
+            di: parseInt(task3P),
+            dc: parseInt(task3D),
+          },
+          {
+            ci: parseInt(task4C),
+            pi: parseInt(task4P),
+            d: parseInt(task4D),
+            cli: parseInt(task4C),
+            di: parseInt(task4P),
+            dc: parseInt(task4D),
+          },
         ];
         break;
       case 5:
         taskSet = [
-          {ci: parseInt(process1C), pi: parseInt(process1P), d: parseInt(process1D), cli: parseInt(process1C), di: parseInt(process1P), dc: parseInt(process1D)},
-          {ci: parseInt(process2C), pi: parseInt(process2P), d: parseInt(process2D), cli: parseInt(process2C), di: parseInt(process2P), dc: parseInt(process2D)},
-          {ci: parseInt(process3C), pi: parseInt(process3P), d: parseInt(process3D), cli: parseInt(process3C), di: parseInt(process3P), dc: parseInt(process3D)},
-          {ci: parseInt(process4C), pi: parseInt(process4P), d: parseInt(process4D), cli: parseInt(process4C), di: parseInt(process4P), dc: parseInt(process4D)},
-          {ci: parseInt(process5C), pi: parseInt(process5P), d: parseInt(process5D), cli: parseInt(process5C), di: parseInt(process5P), dc: parseInt(process5D)}
+          {
+            ci: parseInt(task1C),
+            pi: parseInt(task1P),
+            d: parseInt(task1D),
+            cli: parseInt(task1C),
+            di: parseInt(task1P),
+            dc: parseInt(task1D),
+          },
+          {
+            ci: parseInt(task2C),
+            pi: parseInt(task2P),
+            d: parseInt(task2D),
+            cli: parseInt(task2C),
+            di: parseInt(task2P),
+            dc: parseInt(task2D),
+          },
+          {
+            ci: parseInt(task3C),
+            pi: parseInt(task3P),
+            d: parseInt(task3D),
+            cli: parseInt(task3C),
+            di: parseInt(task3P),
+            dc: parseInt(task3D),
+          },
+          {
+            ci: parseInt(task4C),
+            pi: parseInt(task4P),
+            d: parseInt(task4D),
+            cli: parseInt(task4C),
+            di: parseInt(task4P),
+            dc: parseInt(task4D),
+          },
+          {
+            ci: parseInt(task5C),
+            pi: parseInt(task5P),
+            d: parseInt(task5D),
+            cli: parseInt(task5C),
+            di: parseInt(task5P),
+            dc: parseInt(task5D),
+          },
         ];
         break;
     }
@@ -157,70 +283,96 @@ function App() {
     var rms = RMS(taskSet, time);
     if (rms.passed === false) {
       setRMSfailed(true);
-    }
-    else {
+    } else {
       setRMSfailed(false);
       setRMSpreemptions(rms.preemptions);
+      setChartData("RMS", rms.intervals, dataTmp);
       // call output function
     }
     var edf = EDF(taskSet, time);
     if (edf.passed === false) {
       setEDFfailed(true);
-    }
-    else {
+    } else {
       setEDFfailed(false);
       setEDFpreemptions(edf.preemptions);
+      setChartData("EDF", edf.intervals, dataTmp);
       // call output function
     }
     var llf = LLF(taskSet, time);
     if (llf.passed === false) {
       setLLFfailed(true);
-    }
-    else {
+    } else {
       setLLFfailed(false);
       setLLFpreemptions(llf.preemptions);
+      setChartData("LLF", llf.intervals, dataTmp);
       // call output function
     }
     var dms = DMS(taskSet, time);
     if (dms.passed === false) {
       setDMSfailed(true);
-    }
-    else {
+    } else {
       setDMSfailed(false);
       setDMSpreemptions(dms.preemptions);
+      setChartData("DMS", dms.intervals, dataTmp);
     }
+
+    setData(dataTmp);
     setAlgosRan(true);
-  }
+  };
+
+  const setChartData = (algorithm, intervals, dataParam) => {
+    var i = 0;
+    while (i < intervals.length) {
+      var start = i;
+      var taskNum = intervals[i];
+      while (i < intervals.length && intervals[i] === taskNum) {
+        i++;
+      }
+      if (taskNum !== -1) {
+        dataParam.push([
+          algorithm,
+          "Task " + (taskNum + 1),
+          start * 1000,
+          i * 1000,
+        ]);
+      }
+    }
+    console.log(dataParam);
+  };
 
   return (
     <div>
-      <Container maxWidth="md">
-        <Grid container  direction="column" justify="center" alignItems="center">
+      <Container maxWidth="lg">
+        <Grid container direction="column" justify="center" alignItems="center">
           <Grid item>
-            <Typography variant="h3" >
-              Algorithm Scheduling 
-            </Typography>
+            <Typography variant="h3">Algorithm Scheduling</Typography>
           </Grid>
           <Grid item>
-            <Typography variant="h5" >
+            <Typography variant="h5">
               By: Kyle Marek and Griffin Stout
             </Typography>
           </Grid>
         </Grid>
-        <div className={classes.spacer}/>
-        <Grid container direction="column" alignItems="flex-start" justify="center">
+        <div className={classes.spacer} />
+        <Grid
+          container
+          direction="column"
+          alignItems="flex-start"
+          justify="center"
+        >
           <Grid item>
-            <Typography variant="h6">Select the number of processes:</Typography>
+            <Typography variant="h6">Select the number of taskes:</Typography>
           </Grid>
           <Grid item>
             <FormControl className={classes.formControl}>
-              <InputLabel id="demo-simple-select-label">Number of Processes</InputLabel>
+              <InputLabel id="demo-simple-select-label">
+                Number of Tasks
+              </InputLabel>
               <Select
-              
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value={numProcesses}
-                onChange={handleNumProcessesSelect}
+                value={numTasks}
+                onChange={handleNumTasksSelect}
               >
                 <MenuItem value={1}>1</MenuItem>
                 <MenuItem value={2}>2</MenuItem>
@@ -230,201 +382,254 @@ function App() {
               </Select>
             </FormControl>
           </Grid>
-          <div className={classes.spacer}/>
-          <Grid container direction="column" alignItems="flex-start" spacing={2}>
+          <div className={classes.spacer} />
+          <Grid
+            container
+            direction="column"
+            alignItems="flex-start"
+            spacing={2}
+          >
             <Grid item>
-              <Typography variant="h6">Input details for each process:</Typography>
+              <Typography variant="h6">Input details for each task:</Typography>
             </Grid>
-            {numProcesses >= 1 && (
-              <Grid item >
-                <Grid container direction="row" justify="center" alignItems="center" spacing={1}>
-                  <Grid item><Typography>Process 1</Typography></Grid>
+            {numTasks >= 1 && (
+              <Grid item>
+                <Grid
+                  container
+                  direction="row"
+                  justify="center"
+                  alignItems="center"
+                  spacing={1}
+                >
                   <Grid item>
-                  <TextField 
-                    label="c1"
-                    className={classes.smallInput}
-                    value={process1C}
-                    onChange={handleProcess1C}
-                    variant="outlined"
-                    size="small"
-                  />
+                    <Typography>Task 1</Typography>
                   </Grid>
                   <Grid item>
-                  <TextField 
-                    label="p1"
-                    className={classes.smallInput}
-                    value={process1P}
-                    onChange={handleProcess1P}
-                    variant="outlined"
-                    size="small"
-                  />
+                    <TextField
+                      label="c1"
+                      className={classes.smallInput}
+                      value={task1C}
+                      onChange={handleTask1C}
+                      variant="outlined"
+                      size="small"
+                    />
                   </Grid>
                   <Grid item>
-                  <TextField 
-                    label="d1"
-                    className={classes.smallInput}
-                    value={process1D}
-                    onChange={handleProcess1D}
-                    variant="outlined"
-                    size="small"
-                  />
-                  </Grid>
-                </Grid>
-              </Grid>
-            )}
-            {numProcesses >= 2 && (
-              <Grid item >
-                <Grid container direction="row" justify="center" alignItems="center" spacing={1}>
-                  <Grid item><Typography>Process 2</Typography></Grid>
-                  <Grid item>
-                  <TextField 
-                    label="c2"
-                    className={classes.smallInput}
-                    value={process2C}
-                    onChange={handleProcess2C}
-                    variant="outlined"
-                    size="small"
-                  />
+                    <TextField
+                      label="p1"
+                      className={classes.smallInput}
+                      value={task1P}
+                      onChange={handleTask1P}
+                      variant="outlined"
+                      size="small"
+                    />
                   </Grid>
                   <Grid item>
-                  <TextField 
-                    label="p2"
-                    className={classes.smallInput}
-                    value={process2P}
-                    onChange={handleProcess2P}
-                    variant="outlined"
-                    size="small"
-                  />
-                  </Grid>
-                  <Grid item>
-                  <TextField 
-                    label="d2"
-                    className={classes.smallInput}
-                    value={process2D}
-                    onChange={handleProcess2D}
-                    variant="outlined"
-                    size="small"
-                  />
+                    <TextField
+                      label="d1"
+                      className={classes.smallInput}
+                      value={task1D}
+                      onChange={handleTask1D}
+                      variant="outlined"
+                      size="small"
+                    />
                   </Grid>
                 </Grid>
               </Grid>
             )}
-            {numProcesses >= 3 && (
-              <Grid item >
-                <Grid container direction="row" justify="center" alignItems="center" spacing={1}>
-                  <Grid item><Typography>Process 3</Typography></Grid>
+            {numTasks >= 2 && (
+              <Grid item>
+                <Grid
+                  container
+                  direction="row"
+                  justify="center"
+                  alignItems="center"
+                  spacing={1}
+                >
                   <Grid item>
-                  <TextField 
-                    label="c3"
-                    className={classes.smallInput}
-                    value={process3C}
-                    onChange={handleProcess3C}
-                    variant="outlined"
-                    size="small"
-                  />
+                    <Typography>Task 2</Typography>
                   </Grid>
                   <Grid item>
-                  <TextField 
-                    label="p3"
-                    className={classes.smallInput}
-                    value={process3P}
-                    onChange={handleProcess3P}
-                    variant="outlined"
-                    size="small"
-                  />
+                    <TextField
+                      label="c2"
+                      className={classes.smallInput}
+                      value={task2C}
+                      onChange={handleTask2C}
+                      variant="outlined"
+                      size="small"
+                    />
                   </Grid>
                   <Grid item>
-                  <TextField 
-                    label="d3"
-                    className={classes.smallInput}
-                    value={process3D}
-                    onChange={handleProcess3D}
-                    variant="outlined"
-                    size="small"
-                  />
-                  </Grid>
-                </Grid>
-              </Grid>
-            )}
-            {numProcesses >= 4 && (
-              <Grid item >
-                <Grid container direction="row" justify="center" alignItems="center" spacing={1}>
-                  <Grid item><Typography>Process 4</Typography></Grid>
-                  <Grid item>
-                  <TextField 
-                    label="c4"
-                    className={classes.smallInput}
-                    value={process4C}
-                    onChange={handleProcess4C}
-                    variant="outlined"
-                    size="small"
-                  />
+                    <TextField
+                      label="p2"
+                      className={classes.smallInput}
+                      value={task2P}
+                      onChange={handleTask2P}
+                      variant="outlined"
+                      size="small"
+                    />
                   </Grid>
                   <Grid item>
-                  <TextField 
-                    label="p4"
-                    className={classes.smallInput}
-                    value={process4P}
-                    onChange={handleProcess4P}
-                    variant="outlined"
-                    size="small"
-                  />
-                  </Grid>
-                  <Grid item>
-                  <TextField 
-                    label="d4"
-                    className={classes.smallInput}
-                    value={process4D}
-                    onChange={handleProcess4D}
-                    variant="outlined"
-                    size="small"
-                  />
+                    <TextField
+                      label="d2"
+                      className={classes.smallInput}
+                      value={task2D}
+                      onChange={handleTask2D}
+                      variant="outlined"
+                      size="small"
+                    />
                   </Grid>
                 </Grid>
               </Grid>
             )}
-            {numProcesses >= 5 && (
-              <Grid item >
-                <Grid container direction="row" justify="center" alignItems="center" spacing={1}>
-                  <Grid item><Typography>Process 5</Typography></Grid>
+            {numTasks >= 3 && (
+              <Grid item>
+                <Grid
+                  container
+                  direction="row"
+                  justify="center"
+                  alignItems="center"
+                  spacing={1}
+                >
                   <Grid item>
-                  <TextField 
-                    label="c5"
-                    className={classes.smallInput}
-                    value={process5C}
-                    onChange={handleProcess5C}
-                    variant="outlined"
-                    size="small"
-                  />
+                    <Typography>Task 3</Typography>
                   </Grid>
                   <Grid item>
-                  <TextField 
-                    label="p5"
-                    className={classes.smallInput}
-                    value={process5P}
-                    onChange={handleProcess5P}
-                    variant="outlined"
-                    size="small"
-                  />
+                    <TextField
+                      label="c3"
+                      className={classes.smallInput}
+                      value={task3C}
+                      onChange={handleTask3C}
+                      variant="outlined"
+                      size="small"
+                    />
                   </Grid>
                   <Grid item>
-                  <TextField 
-                    label="d5"
-                    className={classes.smallInput}
-                    value={process5D}
-                    onChange={handleProcess5D}
-                    variant="outlined"
-                    size="small"
-                  />
+                    <TextField
+                      label="p3"
+                      className={classes.smallInput}
+                      value={task3P}
+                      onChange={handleTask3P}
+                      variant="outlined"
+                      size="small"
+                    />
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      label="d3"
+                      className={classes.smallInput}
+                      value={task3D}
+                      onChange={handleTask3D}
+                      variant="outlined"
+                      size="small"
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
+            )}
+            {numTasks >= 4 && (
+              <Grid item>
+                <Grid
+                  container
+                  direction="row"
+                  justify="center"
+                  alignItems="center"
+                  spacing={1}
+                >
+                  <Grid item>
+                    <Typography>Task 4</Typography>
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      label="c4"
+                      className={classes.smallInput}
+                      value={task4C}
+                      onChange={handleTask4C}
+                      variant="outlined"
+                      size="small"
+                    />
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      label="p4"
+                      className={classes.smallInput}
+                      value={task4P}
+                      onChange={handleTask4P}
+                      variant="outlined"
+                      size="small"
+                    />
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      label="d4"
+                      className={classes.smallInput}
+                      value={task4D}
+                      onChange={handleTask4D}
+                      variant="outlined"
+                      size="small"
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
+            )}
+            {numTasks >= 5 && (
+              <Grid item>
+                <Grid
+                  container
+                  direction="row"
+                  justify="center"
+                  alignItems="center"
+                  spacing={1}
+                >
+                  <Grid item>
+                    <Typography>Task 5</Typography>
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      label="c5"
+                      className={classes.smallInput}
+                      value={task5C}
+                      onChange={handleTask5C}
+                      variant="outlined"
+                      size="small"
+                    />
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      label="p5"
+                      className={classes.smallInput}
+                      value={task5P}
+                      onChange={handleTask5P}
+                      variant="outlined"
+                      size="small"
+                    />
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      label="d5"
+                      className={classes.smallInput}
+                      value={task5D}
+                      onChange={handleTask5D}
+                      variant="outlined"
+                      size="small"
+                    />
                   </Grid>
                 </Grid>
               </Grid>
             )}
             <Grid item>
-              <Grid container direction="row" justify="center" alignItems="center" spacing={1}>
-                <Grid item><Typography>Computation Time</Typography></Grid>
+              <Grid
+                container
+                direction="row"
+                justify="center"
+                alignItems="center"
+                spacing={1}
+              >
                 <Grid item>
-                  <TextField 
+                  <Typography>Computation Time</Typography>
+                </Grid>
+                <Grid item>
+                  <TextField
                     label="Time"
                     className={classes.mediumInput}
                     value={time}
@@ -436,75 +641,37 @@ function App() {
               </Grid>
             </Grid>
             <Grid item>
-              <Button variant="contained" color="primary" onClick={calculateThingies}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={calculateThingies}
+              >
                 Calculate
               </Button>
             </Grid>
           </Grid>
           {algosRan && (
             <>
-            <Grid item>
-            {RMSfailed ? (
-              <div>
-              RMS failed 
-              </div>
-            ) : (
-              <div>
-              RMS passed
-              </div>
-            )}
-            {EDFfailed ? (
-              <div>
-              EDF failed
-              </div>
-            ) : (
-              <div>
-              EDF passed
-              </div>
-            )}
-            {LLFfailed ? (
-              <div>
-              LLF failed
-              </div>
-            ) : (
-              <div>
-              LLF passed
-              </div>
-            )}
-          </Grid>
+              <Grid item>
+                {RMSfailed ? <div>RMS failed</div> : <div>RMS passed</div>}
+                {EDFfailed ? <div>EDF failed</div> : <div>EDF passed</div>}
+                {LLFfailed ? <div>LLF failed</div> : <div>LLF passed</div>}
+              </Grid>
             </>
           )}
         </Grid>
       </Container>
-      <Container size="lg">
-        <Chart
-        width={'100%'}
-        height={'200px'}
-        chartType="Timeline"
-        loader={<div>Loading Chart</div>}
-        data={[
-          [
-            { type: 'string', id: 'Position' },
-            { type: 'string', id: 'Name' },
-            { type: 'number', id: 'Start' },
-            { type: 'number', id: 'End' },
-          ],
-          [
-            'RMS',
-            'George Washington',
-            0,
-            2000,
-          ],
-          ['RMS', 'John Adams', 2000, 3000],
-          [
-            'RMS',
-            'George Washington',
-            3000,
-            4000,
-          ],
-        ]}
-      />
-    </Container>
+      {algosRan && (
+        <Container size="lg">
+          <Chart
+            width={"100%"}
+            height={"300px"}
+            chartType="Timeline"
+            loader={<div>Loading Chart</div>}
+            data={data}
+          />
+        </Container>
+      )}
     </div>
   );
 }
