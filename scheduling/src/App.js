@@ -29,6 +29,10 @@ function App() {
   const [EDFfailed, setEDFfailed] = useState(false);
   const [LLFfailed, setLLFfailed] = useState(false);
 
+  const [RMSpreemptions, setRMSpreemptions] = useState(0);
+  const [EDFpreemptions, setEDFpreemptions] = useState(0);
+  const [LLFpreemptions, setLLFpreemptions] = useState(0);
+
   const [numProcesses, setNumProcesses] = useState(1);
   const [time, setTime] = useState('');
 
@@ -126,23 +130,32 @@ function App() {
     }
     console.log(taskSet);
     console.log("Begin schedules");
-    if (RMS(taskSet, time) === "failed") {
+    var rms = RMS(taskSet, time);
+    if (rms.passed === false) {
       setRMSfailed(true);
     }
     else {
       setRMSfailed(false);
+      setRMSpreemptions(rms.preemptions);
+      // call output function
     }
-    if (EDF(taskSet, time) === "failed") {
+    var edf = EDF(taskSet, time);
+    if (edf.passed === false) {
       setEDFfailed(true);
     }
     else {
       setEDFfailed(false);
+      setEDFpreemptions(edf.preemptions);
+      // call output function
     }
-    if (LLF(taskSet, time) === "failed") {
+    var llf = LLF(taskSet, time);
+    if (llf.passed === false) {
       setLLFfailed(true);
     }
     else {
       setLLFfailed(false);
+      setLLFpreemptions(llf.preemptions);
+      // call output function
     }
     setAlgosRan(true);
   }
@@ -354,7 +367,7 @@ function App() {
             </div>
           ) : (
             <div>
-            RMS passed
+            RMS passed, preemptions: {RMSpreemptions}
             </div>
           )}
           {EDFfailed ? (
@@ -363,7 +376,7 @@ function App() {
             </div>
           ) : (
             <div>
-            EDF passed
+            EDF passed, preemptions: {EDFpreemptions}
             </div>
           )}
           {LLFfailed ? (
@@ -372,7 +385,7 @@ function App() {
             </div>
           ) : (
             <div>
-            LLF passed
+            LLF passed, preemptions: {LLFpreemptions}
             </div>
           )}
         </Grid>
