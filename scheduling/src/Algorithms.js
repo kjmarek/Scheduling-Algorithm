@@ -30,7 +30,7 @@ export function RMS(itemsIn, time) {
       }
     }
 
-    if (prevIndexOfShortest !== indexOfShortest && y !== 1 && indexOfShortest !== -1) { // if the task changes and computation time left on the previous task isn't 0
+    if (prevIndexOfShortest !== indexOfShortest && y !== 1 && indexOfShortest !== -1 && prevIndexOfShortest !== -1) { // if the task changes and computation time left on the previous task isn't 0
       if ((items[prevIndexOfShortest].ci !== items[prevIndexOfShortest].cli) && (items[prevIndexOfShortest].cli !== 0)) {
         preemptions++;
         console.log("Preempted here");
@@ -105,7 +105,7 @@ export function EDF(itemsIn, time) {
       }
     }
 
-    if (prevIndexOfShortest !== indexOfShortest && y !== 1 && indexOfShortest !== -1) { // if the task changes and computation time left on the previous task isn't 0
+    if (prevIndexOfShortest !== indexOfShortest && y !== 1 && indexOfShortest !== -1 && prevIndexOfShortest !== -1) { // if the task changes and computation time left on the previous task isn't 0
       if ((items[prevIndexOfShortest].ci !== items[prevIndexOfShortest].cli) && (items[prevIndexOfShortest].cli !== 0)) {
         preemptions++;
         console.log("Preempted here");
@@ -184,7 +184,7 @@ export function DMS(itemsIn, time) {
       }
     }
 
-    if (prevIndexOfShortest !== indexOfShortest && y !== 1 && indexOfShortest !== -1) { // if the task changes and computation time left on the previous task isn't 0
+    if (prevIndexOfShortest !== indexOfShortest && y !== 1 && indexOfShortest !== -1 && prevIndexOfShortest !== -1) { // if the task changes and computation time left on the previous task isn't 0
       if ((items[prevIndexOfShortest].ci !== items[prevIndexOfShortest].cli) && (items[prevIndexOfShortest].cli !== 0)) {
         preemptions++;
         console.log("Preempted here");
@@ -263,7 +263,7 @@ export function LLF(itemsIn, time) {
       }
     }
 
-    if (prevIndexOfShortest !== indexOfShortest && y !== 1 && indexOfShortest !== -1) { // if the task changes and computation time left on the previous task isn't 0
+    if (prevIndexOfShortest !== indexOfShortest && y !== 1 && indexOfShortest !== -1 && prevIndexOfShortest !== -1) { // if the task changes and computation time left on the previous task isn't 0
       if ((items[prevIndexOfShortest].ci !== items[prevIndexOfShortest].cli) && (items[prevIndexOfShortest].cli !== 0)) {
         preemptions++;
         console.log("Preempted here");
