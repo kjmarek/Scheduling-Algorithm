@@ -374,7 +374,7 @@ function App() {
           justify="center"
         >
           <Grid item>
-            <Typography variant="h6">Select the number of taskes:</Typography>
+            <Typography variant="h6">Select the number of tasks:</Typography>
           </Grid>
           <Grid item>
             <FormControl className={classes.formControl}>
